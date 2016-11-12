@@ -6,7 +6,7 @@ before_install:
     - "sh -e /etc/init.d/xvfb start"
     - sleep 3 
 install:
-#  - pip install django
+  - pip install django
   - pip install selenium==2.53.6
   - pip install flake8
   - pip install autopep8
@@ -15,3 +15,4 @@ script:
   - flake8 --max-line-length=160  	./superlists/functional_tests.py
   - python3 -m doctest ./superlists/functional_tests.py
   - python3  	./superlists/functional_tests.py
+  - python3 manage.py test
