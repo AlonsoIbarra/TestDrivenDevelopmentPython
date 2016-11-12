@@ -12,7 +12,6 @@ install:
   - pip install autopep8
 script:
   - python -m compileall ./superlists/*
-  - flake8 --max-line-length=160  	./superlists/*
-  - python3 -m doctest ./superlists/functional_tests.py
+  - flake8 --max-line-length=160  	./superlists/functional_tests.py ./superlists/lists/tests.py
   - python3  	./superlists/functional_tests.py
   - python3 ./superlists/manage.py test
