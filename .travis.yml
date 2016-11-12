@@ -1,6 +1,10 @@
 language: python
 python:
   - "3.4"
+before_install:
+    - "export DISPLAY=:99.0"
+    - "sh -e /etc/init.d/xvfb start"
+    - sleep 3 
 install:
   - pip install django
   - pip install selenium==2.53.6
