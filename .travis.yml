@@ -3,8 +3,11 @@ python:
   - "3.4"
 # command to install dependencies
 install:
+  - pip install selenium==2.53.6
   - pip install flake8
   - pip install autopep8
 script:
-  - flake8 --max-line-length=160  	superlists/functional_tests.py
-  - python3  	superlists/functional_tests.py
+  - python -m compileall ./superlists/functional_tests.py
+  - flake8 --max-line-length=160  	./superlists/functional_tests.py
+  - python3 -m doctest ./superlists/functional_tests.py
+  - python3  	./superlists/functional_tests.py
