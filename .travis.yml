@@ -10,11 +10,12 @@ install:
   - pip install selenium==2.39
   - pip install flake8
   - pip install autopep8
+  - apt-get install nginx
 script:
   - cd ./superlists
   - wget -O bootstrap.zip https://github.com/twbs/bootstrap/releases/download/v3.1.0/bootstrap-3.1.0-dist.zip
   - unzip bootstrap.zip
-  - mkdir lists/static
+  - mkdir -p lists/static
   - mv dist lists/static/bootstrap
   - rm bootstrap.zip
   - python -m compileall *
