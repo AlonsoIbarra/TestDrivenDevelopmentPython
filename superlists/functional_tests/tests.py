@@ -29,7 +29,7 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox.send_keys('Buy peacock feathers')
         inputbox.send_keys(Keys.ENTER)
         edit_list_url = self.browser.current_url
-        self.assertRegex(edit_list_url, '/lists/.+')
+        self.assertRegex(edit_list_url, '/lists/.')
         self.check_for_row_in_list_table('1: Buy peacock feathers')
         inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys('Use peacock feathers to make a fly')
@@ -46,7 +46,7 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox.send_keys('Buy milk')
         inputbox.send_keys(Keys.ENTER)
         francis_list_url = self.browser.current_url
-        self.assertRegex(francis_list_url. 'lists/.+')
+        self.assertRegex(francis_list_url. 'lists/.')
         self.assertNoEqual(francis_list_url, edit_list_url)
         page_text = self.browser.find_elements_by_tag_name('body').text
         self.assertNotIn('Buy peacock feathers', page_text)
