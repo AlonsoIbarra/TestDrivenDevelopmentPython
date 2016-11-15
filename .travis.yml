@@ -12,6 +12,11 @@ install:
   - pip install autopep8
 script:
   - cd ./superlists
+  - wget -O bootstrap.zip https://github.com/twbs/bootstrap/releases/download/v3.1.0/bootstrap-3.1.0-dist.zip
+  - unzip bootstrap.zip
+  - mkdir lists/static
+  - mv dist lists/static/bootstrap
+  - rm bootstrap.zip
   - python -m compileall *
   - flake8 --max-line-length=160 functional_tests/ lists/
   - python3 manage.py test lists/
