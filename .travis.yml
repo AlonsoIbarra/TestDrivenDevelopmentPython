@@ -2,22 +2,23 @@ language: python
 python:
   - "3.4"
 before_install:
-    - "export DISPLAY=:99.0"
-    - "sh -e /etc/init.d/xvfb start"
-    - sleep 3 
+ - "export DISPLAY=:99.0"
+ - "sh -e /etc/init.d/xvfb start"
+ - sleep 3 
+addons:
+  - firefox
 install:
-  - pip install django==1.7
-  - pip install selenium==2.39
-  - pip install flake8
-  - pip install autopep8
+  - pip install django==1.7 selenium==2.39 flake8 autopep8
+  - sudo apt-get install nginx
+  - sudo service nginx start
 script:
   - cd ./superlists
   - wget -O bootstrap.zip https://github.com/twbs/bootstrap/releases/download/v3.1.0/bootstrap-3.1.0-dist.zip
   - unzip bootstrap.zip
-  - mkdir lists/static
+  - mkdir -p lists/static
   - mv dist lists/static/bootstrap
   - rm bootstrap.zip
   - python -m compileall *
-  - flake8 --max-line-length=160 functional_tests/ lists/
+#  - flake8 --max-line-length=160 functional_tests/ lists/
   - python3 manage.py test lists/
   - python3 manage.py test functional_tests/
