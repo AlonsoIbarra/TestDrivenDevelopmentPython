@@ -21,4 +21,4 @@ script:
   - python -m compileall *
 #  - flake8 --max-line-length=160 functional_tests/ lists/
   - python3 manage.py test lists/
-#  - python3 manage.py test functional_tests/
+  - python3 manage.py test functional_tests/
