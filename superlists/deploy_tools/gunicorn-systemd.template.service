@@ -1,0 +1,12 @@
+[Unit]
+Description=Gunicorn server for SAUL89.COM
+
+[Service]
+Restart=on-failure
+User=elspeth
+WorkingDirectory=/home/elspeth/sites/SAUL89.COM/virtualenv/bin/gunicorn \
+    --bind unix:/tmp/SAUL89.COM.socket \
+    superlists.wsgi:aplication
+
+[Install]
+WantedBy=multi-user.target
