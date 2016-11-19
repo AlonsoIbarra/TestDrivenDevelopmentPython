@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 
 
 def home_page(request):
-    return render(request, 'home.html')
+    return render(request, 'home.html', {'form': ItemForm()})
 
 
 def view_list(request, list_id):
