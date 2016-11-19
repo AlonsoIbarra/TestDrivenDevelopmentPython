@@ -1,10 +1,10 @@
-import sys
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from unittest import skip
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+import sys
 
 
 class FunctionalTest(StaticLiveServerTestCase):
@@ -17,6 +17,7 @@ class FunctionalTest(StaticLiveServerTestCase):
         super().setUpClass()
         cls.server_url = cls.live_server_url
 
+    @classmethod
     def tearDownClass(cls):
         if cls.server_url == cls.live_server_url:
             super().tearDownClass()
