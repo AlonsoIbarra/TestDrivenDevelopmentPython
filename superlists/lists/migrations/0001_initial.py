@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Item',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
                 ('text', models.TextField(default='')),
             ],
             options={
@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='List',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, verbose_name='ID', serialize=False, auto_created=True)),
             ],
             options={
             },
@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='item',
             name='list',
-            field=models.ForeignKey(default=None, to='lists.List'),
+            field=models.ForeignKey(to='lists.List', default=None),
             preserve_default=True,
         ),
     ]

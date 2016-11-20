@@ -1,6 +1,7 @@
 from .base import FunctionalTest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 class NewVisitorTest(FunctionalTest):
@@ -25,7 +26,10 @@ class NewVisitorTest(FunctionalTest):
         self.check_for_row_in_list_table('1: Buy peacock feathers')
         self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
         self.browser.quit()
-        self.browser = webdriver.Firefox()
+        firefox_capabilities = DesiredCapabilities.FIREFOX
+        firefox_capabilities['marionette'] = True
+        firefox_capabilities['binary'] = '/home/geckodriver'
+        self.browser = webdriver.Firefox(capabilities=firefox_capabilities)
         self.browser.get(self.server_url)
         page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Buy peacock feathers', page_text)
