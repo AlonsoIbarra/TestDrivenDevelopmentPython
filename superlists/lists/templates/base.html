@@ -9,7 +9,7 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-md-offset-3 jumbotron">
+                <div class="col-md-6 col-md-offset-3">
                     <div class="text-center">
     	                <h1>
                             {% block header_text %}{% endblock %}
@@ -19,9 +19,7 @@
                             {% csrf_token %}
                             {% if form.errors %}
                                 <div class="form-group has-error">
-                                    <div class="help-block" >
-                                        {{ form.errors }}
-                                    </div>
+                                    <span class="help-block" >{{ form.text.errors }}</span>
                                 </div>
                             {% endif %}
                     	</form>
