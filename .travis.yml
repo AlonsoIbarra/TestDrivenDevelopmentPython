@@ -11,8 +11,8 @@ addons:
   
 install:
   - sudo pip install django==1.7
-  - pip selenium==2.39
-  - pip flake8 autopep8
+  - pip install selenium==2.39
+  - pip install flake8 autopep8
 
 script:
   - cd ./superlists
