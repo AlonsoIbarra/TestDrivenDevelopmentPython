@@ -79,4 +79,3 @@ class ListModelTest(TestCase):
             list(Item.objects.all()),
             [item1, item2, item3]
         )
-

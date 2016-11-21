@@ -1,21 +1,16 @@
-from django.template.loader import render_to_string
-from django.core.urlresolvers import resolve
 from django.test import TestCase
-from django.http import HttpRequest
-from lists.views import home_page
 from lists.models import Item, List
 from django.utils.html import escape
 from lists.forms import (
     DUPLICATE_ITEM_ERROR, EMPTY_LIST_ERROR,
     ItemForm, ExistingListItemForm
 )
-from unittest import skip
 
 
 class HomePageTest(TestCase):
     def test_home_page_renders_home_template(self):
         response = self.client.get('/')
-        self.assertTemplateUsed(response, 'home.html')  
+        self.assertTemplateUsed(response, 'home.html')
 
     def test_home_page_uses_item_form(self):
         response = self.client.get('/')
@@ -42,13 +37,11 @@ class ListViewTest(TestCase):
         self.assertNotContains(response, 'other list item 2')
 
     def test_passes_correct_list_to_template(self):
-        other_list = List.objects.create()
         correct_list = List.objects.create()
         response = self.client.get('/lists/%d/' % (correct_list.id,))
         self.assertEqual(response.context['list'], correct_list)
 
     def test_can_save_a_POST_request_to_an_existing_list(self):
-        other_list = List.objects.create()
         correct_list = List.objects.create()
         self.client.post(
             '/lists/%d/' % (correct_list.id,),
@@ -60,7 +53,6 @@ class ListViewTest(TestCase):
         self.assertEqual(new_item.list, correct_list)
 
     def test_POST_redirects_to_list_view(self):
-        other_list = List.objects.create()
         correct_list = List.objects.create()
         response = self.client.post(
             '/lists/%d/' % (correct_list.id,),
@@ -78,7 +70,7 @@ class ListViewTest(TestCase):
         list_ = List.objects.create()
         return self.client.post(
             '/lists/%d/' % (list_.id,),
-            data={'text':''}
+            data={'text': ''}
         )
 
     def test_for_invalid_input_nothing_saved_to_db(self):
@@ -145,7 +137,7 @@ class NewListTest(TestCase):
         list_ = List.objects.create()
         response = self.client.post(
             '/lists/%d/' % (list_.id,),
-            data={'text':''}
+            data={'text': ''}
         )
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'list.html')
@@ -164,4 +156,3 @@ class NewListTest(TestCase):
     def test_for_invalid_input_passes_form_to_template(self):
         response = self.client.post('/lists/new', data={'text': ''})
         self.assertIsInstance(response.context['form'], ItemForm)
-

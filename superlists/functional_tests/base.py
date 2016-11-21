@@ -1,13 +1,10 @@
-from django.contrib.staticfiles.testing import StaticLiveServerCase
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from unittest import skip
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import sys
 
 
-class FunctionalTest(StaticLiveServerCase):
+class FunctionalTest(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         for arg in sys.argv:
@@ -39,4 +36,3 @@ class FunctionalTest(StaticLiveServerCase):
 
     def get_item_input_box(self):
         return self.browser.find_element_by_id('id_text')
-
