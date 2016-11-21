@@ -1,25 +1,24 @@
 language: python
+dist: trusty
 python:
-  - "3.4"
-before_install:
- - "export DISPLAY=:99.0"
- - "sh -e /etc/init.d/xvfb start"
- - sleep 3 
+- 3.5
+sudo: required
 addons:
-  - firefox
+apt:
+packages:
+- libappindicator1
+- fonts-liberation
+- chromium-browser
+- chromium-chromedriver
+before_install:
+- export CHROME_BIN=chromium-browser
+- export DISPLAY=:99.0
+- wget http://chromedriver.storage.googleapis.com/2.21/chromedriver_linux64.zip
+- unzip chromedriver_linux64.zip
+- sudo chmod u+x chromedriver
+- sudo mv chromedriver /usr/bin/
+- sh -e /etc/init.d/xvfb start
 install:
-  - pip install django==1.7 selenium==2.39 flake8 autopep8
-  - pip2 install --user fabric
-  - sudo apt-get install nginx
-  - sudo service nginx start
+- pip install flake8 selenium
 script:
-  - cd ./superlists
-  - wget -O bootstrap.zip https://github.com/twbs/bootstrap/releases/download/v3.1.0/bootstrap-3.1.0-dist.zip
-  - unzip bootstrap.zip
-  - mkdir -p lists/static
-  - mv dist lists/static/bootstrap
-  - rm bootstrap.zip
-  - python -m compileall *
-#  - flake8 --max-line-length=160 functional_tests/ lists/
-  - python3 manage.py test lists/
-#  - python3 manage.py test functional_tests/
+- flake8
