@@ -10,7 +10,7 @@ addons:
   - firefox
   
 install:
-  - pip install django==1.7
+  - sudo pip install django==1.7
   - pip selenium==2.39
   - pip flake8 autopep8
 
