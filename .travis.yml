@@ -20,7 +20,7 @@ before_install:
 - sh -e /etc/init.d/xvfb start
 install:
 - pip install flake8 selenium coverage coveralls
-- pip install -r ../requirements.txt
+- pip install -r superlists/requirements.txt
 script:
 - flake8
 - coverage run manage.py test
