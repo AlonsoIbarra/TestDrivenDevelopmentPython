@@ -1,8 +1,8 @@
 addons:
   - firefox
 install:
-  - pip install django==1.7 selenium==2.39 flake8 autopep8
-  - pip2 install --user fabric
+  - sudo pip install django==1.7 selenium==2.39 flake8 autopep8
+  - sudo pip2 install --user fabric
   - sudo apt-get install nginx
   - sudo service nginx start
 script:
