@@ -1,10 +1,20 @@
+python:
+  - "3.4"
+  
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 
+  
 addons:
   - firefox
+  
 install:
   - pip install django==1.7 selenium==2.39 flake8 autopep8
   - sudo pip2 install --user fabric
   - sudo apt-get install nginx
   - sudo service nginx start
+
 script:
   - cd ./superlists
   - wget -O bootstrap.zip https://github.com/twbs/bootstrap/releases/download/v3.1.0/bootstrap-3.1.0-dist.zip
